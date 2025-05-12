@@ -122,6 +122,11 @@
 #define APPLE_IIGS1     0x81  /* Apple IIgs (ROM 1)          */
 #define APPLE_IIGS3     0x83  /* Apple IIgs (ROM 3)          */
 
+/* Return codes for get_tv() */
+#define TV_NTSC  0
+#define TV_PAL   1
+#define TV_OTHER 2
+
 extern unsigned char _dos_type;
 /* Valid _dos_type values:
 **
@@ -200,6 +205,9 @@ extern void a2_lo_tgi[];
 void beep (void);
 /* Beep beep. */
 
+unsigned char get_tv (void);
+/* Get the machine vblank frequency. Returns one of the TV_xxx codes. */
+
 unsigned char get_ostype (void);
 /* Get the machine type. Returns one of the APPLE_xxx codes. */
 
@@ -231,6 +239,21 @@ struct tm* __fastcall__ gmtime_dt (const struct datetime* dt);
 
 time_t __fastcall__ mktime_dt (const struct datetime* dt);
 /* Converts a ProDOS date/time structure to a time_t UNIX timestamp */
+
+typedef struct DIR DIR;
+
+unsigned int __fastcall__ dir_entry_count(DIR *dir);
+/* Returns the number of active files in a ProDOS directory */
+
+#if !defined(__APPLE2ENH__)
+unsigned char __fastcall__ allow_lowercase (unsigned char onoff);
+/* If onoff is 0, lowercase characters printed to the screen via STDIO and
+** CONIO are forced to uppercase. If onoff is 1, lowercase characters are
+** printed to the screen untouched.  By default lowercase characters are
+** forced to uppercase because a stock Apple ][+ doesn't support lowercase
+** display. The function returns the old lowercase setting.
+*/
+#endif
 
 
 
