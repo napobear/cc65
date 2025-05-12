@@ -51,7 +51,7 @@
 
 /* Supported target systems */
 typedef enum {
-    TGT_UNKNOWN = -1,           /* Not specified or invalid target */
+    TGT_UNKNOWN = -1, /* Not specified or invalid target */
     TGT_NONE,
     TGT_MODULE,
     TGT_ATARI,
@@ -88,8 +88,9 @@ typedef enum {
     TGT_CX16,
     TGT_SYM1,
     TGT_KIM1,
+    TGT_AIM65,
     TGT_RP6502,
-    TGT_COUNT                   /* Number of target systems */
+    TGT_COUNT /* Number of target systems */
 } target_t;
 
 /* Collection of target properties */
