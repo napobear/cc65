@@ -1,5 +1,5 @@
 ;
-; Startup code for cc65 (Sym-1 version)
+; Startup code for cc65 (AIM-65 version)
 ;
 
         .export         _init, _exit
