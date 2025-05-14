@@ -25,19 +25,18 @@ GAP     := $A409   ; 1 byte, Audio Tape Gap
                    ;         Default = $08 (32 SYN characters)
                    ;         Option  = $80 (for Assembler input & Editor update)
 INFLG   := $A412   ; 1 byte, Active Input Device
-                   ;         $0D (ASCII Return) Read from keyboad or TTY
-                   ;         'T' Read from tape
-                   ;         'K' Read from tape in KIM-1 format
-                   ;         'M' Read from editor buffer in memory
-                   ;         'U' Read from user defined routine
-                   ;         'L' Read from PPR tape (punched tape)
+                   ;         'T'   Read from tape in AIM-65 format
+                   ;         'K'   Read from tape in KIM-1 format
+                   ;         'U'   Read from user defined routine
+                   ;         'L'   Read from PPR tape (punched tape)
+                   ;         OTHER Read from keyboad or TTY
 OUTFLG  := $A413   ; 1 byte, Active Output Device
-                   ;         $0D (ASCII Return) Write to display or TTY
-                   ;         'T' Write to tape
-                   ;         'K' Write to tape in KIM-1 format
-                   ;         'P' Write to printer
-                   ;         'U' Write to user defined routine
-                   ;         'X' Write to nothing (discard chars)
+                   ;         'T'   Write to tape in AIM-65 format
+                   ;         'K'   Write to tape in KIM-1 format
+                   ;         'P'   Write to printer
+                   ;         'U'   Write to user defined routine
+                   ;         'X'   Write to nothing (discard chars)
+                   ;         OTHER Write to display/printer or TTY
 S1      := $A41A   ; Start Address
 ADDR    := $A41C   ; End Address
 CKSUM   := $A41E   ; Checksum
