@@ -43,4 +43,4 @@ _init:    cld                          ; Clear decimal mode
 ; Back from main (this is also the _exit entry)
 
 _exit:    jsr     donelib              ; Run destructors
-          jmp     RESET                 ; Monitor entry point
+          jmp     RESET                ; Monitor entry point

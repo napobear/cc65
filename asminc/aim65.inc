@@ -42,6 +42,7 @@ S1      := $A41A   ; Start Address
 ADDR    := $A41C   ; End Address
 CKSUM   := $A41E   ; Checksum
 NAME    := $A42E   ; Tape File Name
+TAPOUT  := $A435   ; Tape unit selected
 DRB     := $A800   ; 6522 Data Register B
 
 ; Monitor routines
@@ -65,17 +66,35 @@ CUREAD  := $FE83   ; Inputs one ASCII char from KB to A, display
                    ; cursor
 DISASM  := $F46C   ; Outputs disassembled instruction
 DU11    := $E50A   ; Close tape block if active
-DUMPTA  := $E56F   ; Opens Audio Tape output file
+DUMPTA  := $E56F   ; Opens a Audio Tape output file by setting the tape buffer
+                   ; pointer and moving the file name from NAME ($A42E) to the
+                   ; tape buffer. The rest of the tape buffer can be loaded
+                   ; with output data using OUTALL. The recorder 1 or 2
+                   ; control will turn on automatically depending on the state
+                   ; of TAPOUT ($A435).
+DU11    := $E50A   ; Closes a tape block if the audio tape output is active.
+                   ; Turns both recorder controls on. Stores CR ($0D) in INFLG
+                   ; ($A412) and OUTFLG ($A714) to indicate input from
+                   ; keyboard and output to the display/printer. 
 EQUAL   := $E7D8   ; Outputs "=" to D/P
 FROM    := $E7A3   ; Outputs "FROM=" to D/P and enters address
-GETTAP  := $EE29   ; Inputs one character from Audio Tape
+GETTAP  := $EE29   ; Inputs one character from Audio Tape into A. The tape
+                   ; must be in sync to read the character properly.
 HEX     := $EA7D   ; Converts a hex number in A from ASCII to
                    ; binary, and puts result in the LSD of A,
                    ; with zero in MSD of A
-INALL   := $E993   ; Inputs one ASCII char from AID to A
-INLOW   := $E8F8   ; Indicates KB input in INFLG
+INALL   := $E993   ; Inputs one ASCII char from AID to A. The input device
+                   ; code must be in INFLG ($A412) before calling.
+INLOW   := $E8F8   ; Put CR ($0D) in INFLG to indicates Keyboard input.
 LL      := $E8FE   ; Sets input from KB and output to D/P
-LOADTA  := $E32F   ; Searches for audio input file
+LOADTA  := $E32F   ; Searches for audio tape file with file name as specified
+                   ; in NAME ($A42E). Turns on recorder control 1 or 2
+                   ; depending on the state of TAPIN ($A434). Loads only the
+                   ; first block of the located file. Each byte of the loaded
+                   ; block can then be read using INALL. Subsequent block
+                   ; will be loaded automatically whenever the tape input
+                   ; buffer is empty. Subroutine LOAD1 can be used after
+                   ; LOADTA to load the remaining blocks. 
 NOUT    := $EA51   ; Converts a hex number in LSD of A from
                    ; binary to ASCII, and outputs them to AOD
 NUMA    := $EA46   ; Converts two hex numbers in A from binary
@@ -88,7 +107,7 @@ OUTDP1  := $EF02   ; Output A to active display
 OUTLOW  := $E901   ; Set output to terminal (D/P or TTY)
 OUTPRI  := $F000   ; Output A to printer
 OUTPUT  := $E97A   ; Outputs ASCII char in A to either TTY of D/P
-OUTTAP  := $F24A   ; Outputs ASCII char in A to Audo Tape
+OUTTAP  := $F24A   ; Outputs ASCII char in A to Audio Tape
                    ; after SYN
 PACK    := $EA84   ; Converts a hex number in A from ASCII to
                    ; binary, and puts result in the LSD of A,
