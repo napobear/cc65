@@ -120,7 +120,7 @@ To be more specific, this limitation means that you cannot use any of the follow
 
 <sect>Other hints<p>
 
-<sect1>sym1.h<p>
+<sect1>aim65.h<p>
 This header exposes AIM-specific I/O functions that are useful for reading and writing its ports and front panel.
 See the <tt/aim65.h/ include file for a list of the functions available.
 
