@@ -54,6 +54,7 @@ DRB     := $A800   ; 6522 Data Register B
 ;        NUL = Null ASCII control code
 ;        KB  = Keyboard
 
+RSET    := $E0BF   ; Reset routine
 BLANK   := $E83E   ; Outputs one SP to D/P
 BLANK2  := $E83B   ; Outputs two SP's to D/P
 CLR     := $EB44   ; Clears D/P pointers
@@ -104,7 +105,7 @@ OUTDP   := $EEFC   ; Output A to D/P
 OUTDP1  := $EF02   ; Output A to active display
 OUTLOW  := $E901   ; Set output to terminal (D/P or TTY)
 OUTPRI  := $F000   ; Output A to printer
-OUTPUT  := $E97A   ; Outputs ASCII char in A to either TTY of D/P
+OUTPUT  := $E97A   ; Outputs ASCII char in A to either TTY or D/P
 OUTTAP  := $F24A   ; Outputs ASCII char in A to Audio Tape
                    ; after SYN
 PACK    := $EA84   ; Converts a hex number in A from ASCII to
