@@ -183,7 +183,7 @@ endif
 # Lists of subdirectories
 
 # disasm depends on cpp
-DIRLIST = tutorial geos atari2600 atari5200 apple2 gamate lynx supervision sym1 kim1 cbm
+DIRLIST = tutorial geos atari2600 atari5200 apple2 gamate lynx supervision sym1 kim1 aim65 cbm
 
 # --------------------------------------------------------------------------
 # Lists of executables
@@ -421,6 +421,9 @@ EXELIST_sym1 =     \
 EXELIST_kim1 =     \
         notavailable
 
+EXELIST_aim65 =     \
+        notavailable
+
 EXELIST_telestrat = \
         ascii       \
         checkversion \
@@ -475,6 +478,7 @@ all:
 # List of every supported platform
 TARGETS :=     \
   agat         \
+  aim65        \
   apple2       \
   apple2enh    \
   atari        \
@@ -696,6 +700,7 @@ install:
 	$(INSTALL) -d $(DESTDIR)$(samplesdir)/supervision
 	$(INSTALL) -d $(DESTDIR)$(samplesdir)/disasm
 	$(INSTALL) -d $(DESTDIR)$(samplesdir)/kim1
+	$(INSTALL) -d $(DESTDIR)$(samplesdir)/aim65
 	$(INSTALL) -d $(DESTDIR)$(samplesdir)/lynx
 	$(INSTALL) -d $(DESTDIR)$(samplesdir)/sim65
 	$(INSTALL) -d $(DESTDIR)$(samplesdir)/sym1
@@ -712,6 +717,7 @@ install:
 	$(INSTALL) -m0644 supervision/*.* $(DESTDIR)$(samplesdir)/supervision
 	$(INSTALL) -m0644 disasm/*.* $(DESTDIR)$(samplesdir)/disasm
 	$(INSTALL) -m0644 kim1/*.* $(DESTDIR)$(samplesdir)/kim1
+	$(INSTALL) -m0644 aim65/*.* $(DESTDIR)$(samplesdir)/aim65
 	$(INSTALL) -m0644 lynx/*.* $(DESTDIR)$(samplesdir)/lynx
 	$(INSTALL) -m0644 sim65/*.* $(DESTDIR)$(samplesdir)/sim65
 	$(INSTALL) -m0644 sym1/*.* $(DESTDIR)$(samplesdir)/sym1

@@ -34,6 +34,7 @@ GEOS = geos-apple \
        geos-cbm
 
 TARGETS = agat         \
+          aim65        \
           apple2       \
           apple2enh    \
           atari        \

@@ -407,6 +407,10 @@ static void SetSys (const char* Sys)
             NewSymbol ("__AGAT__", 1);
             break;
 
+        case TGT_AIM65:
+            NewSymbol ("__AIM65__", 1);
+            break;
+
         default:
             AbEnd ("Invalid target name: '%s'", Sys);
 
